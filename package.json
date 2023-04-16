@@ -12,8 +12,14 @@
     "commands": [
         {
             "name": "search_users",
-            "title": "Search Mastodon Users",
-            "description": "Search Mastodon for matching users and navigate to their profile page.",
+            "title": "Search Mastodon for Users",
+            "description": "Search Mastodon for user information.",
+            "mode": "view"
+        },
+        {
+            "name": "search_hashtags",
+            "title": "Search Mastodon for Hashtags",
+            "description": "Search Mastodon for hashtags.",
             "mode": "view"
         }
     ],
