@@ -2,7 +2,7 @@
     "$schema": "https://www.raycast.com/schemas/extension.json",
     "name": "mastodon",
     "title": "Mastodon",
-    "description": "Mastodon search extension for Raycast",
+    "description": "Mastodon search extension for Raycast.",
     "icon": "command-icon.png",
     "author": "daveverwer",
     "categories": [
