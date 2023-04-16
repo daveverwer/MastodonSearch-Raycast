@@ -1,10 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
-import { ActionPanel, Action, Icon, List, Image, getPreferenceValues } from '@raycast/api'
+import { ActionPanel, Action, Icon, List, Image, Toast, getPreferenceValues, showToast } from '@raycast/api'
 import { useFetch } from '@raycast/utils'
-
-// TODO:
-// - [ ] Display a view that says no results were found.
-// - [ ] Display a view that says there was an error.
 
 interface MastodonSearchAPIResponse {
     accounts: MastodonSearchAPIAccount[]
@@ -110,6 +106,10 @@ export default function Command() {
             // Make sure the screen isn't flickering when the searchText changes.
             keepPreviousData: true,
             execute: validSearchText,
+            onError: (error) => {
+                showToast(Toast.Style.Failure, 'Error', error.message)
+                console.error(error)
+            },
         }
     )
     const results = useMemo(() => new MastodonSearch(data), [data])
