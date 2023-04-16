@@ -4,6 +4,7 @@ import { useFetch } from '@raycast/utils'
 
 export interface MastodonSearchAPIResponse {
     accounts: MastodonSearchAPIAccount[]
+    hashtags: MastodonSearchAPIHashtag[]
 }
 
 export interface MastodonSearchAPIAccount {
@@ -16,17 +17,29 @@ export interface MastodonSearchAPIAccount {
     bot: boolean
 }
 
+export interface MastodonSearchAPIHashtag {
+    name: string
+    url: string
+}
+
+export enum SearchKind {
+    Accounts = 'accounts',
+    Hashtags = 'hashtags',
+}
+
 export class MastodonSearch {
     readonly accounts: MastodonAccount[]
+    readonly hashtags: MastodonHashtag[]
 
     constructor(response?: MastodonSearchAPIResponse) {
         this.accounts = response?.accounts.map((account) => new MastodonAccount(account)) || []
+        this.hashtags = response?.hashtags.map((hashtag) => new MastodonHashtag(hashtag)) || []
     }
 
-    static search(query: string) {
+    static search(query: string, kind: SearchKind) {
         const prefs = getPreferenceValues()
         const { isLoading, data } = useFetch<MastodonSearchAPIResponse>(
-            `https://${prefs.instance}/api/v2/search?type=accounts&q=${query}`,
+            `https://${prefs.instance}/api/v2/search?type=${kind}&q=${query}`,
             {
                 // Make sure the screen isn't flickering when the searchText changes.
                 keepPreviousData: true,
@@ -80,5 +93,15 @@ export class MastodonAccount {
         }
         accessories.push({ icon: Icon.TwoPeople, tooltip: 'Number of followers', text: this.followersCount.toString() })
         return accessories
+    }
+}
+
+export class MastodonHashtag {
+    readonly name: string
+    readonly url: string
+
+    constructor(hashtag: MastodonHashtag) {
+        this.name = hashtag.name
+        this.url = hashtag.url
     }
 }

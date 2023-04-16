@@ -1,13 +1,18 @@
 import { useState } from 'react'
 import { List, ActionPanel, Action, Image } from '@raycast/api'
-import { MastodonSearch } from './common'
+import { MastodonSearch, SearchKind } from './common'
 
 export default function Command() {
     const [searchText, setSearchText] = useState('')
-    const { isLoading, searchResult } = MastodonSearch.search(searchText)
+    const { isLoading, searchResult } = MastodonSearch.search(searchText, SearchKind.Accounts)
 
     return (
-        <List isLoading={isLoading} searchText={searchText} onSearchTextChange={setSearchText} throttle>
+        <List
+            isLoading={isLoading}
+            searchText={searchText}
+            onSearchTextChange={setSearchText}
+            throttle
+            searchBarPlaceholder='Search people'>
             {searchResult.accounts.map((item) => (
                 <List.Item
                     key={item.id}
