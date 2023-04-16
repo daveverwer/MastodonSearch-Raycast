@@ -1,14 +1,10 @@
 import { useEffect, useState, useMemo } from 'react'
 import { ActionPanel, Action, Icon, List, Image, getPreferenceValues } from '@raycast/api'
 import { useFetch } from '@raycast/utils'
-import { access } from 'fs'
 
 // TODO:
-// - [ ] Display a view that says to enter more than four characters.
 // - [ ] Display a view that says no results were found.
 // - [ ] Display a view that says there was an error.
-// - [ ] Display the user avatar.
-// - [ ] When calculating the handle, webfinger any usernames on the home server.
 
 interface MastodonSearchAPIResponse {
     accounts: MastodonSearchAPIAccount[]
@@ -29,6 +25,33 @@ class MastodonSearch {
 
     constructor(response?: MastodonSearchAPIResponse) {
         this.accounts = response?.accounts.map((account) => new MastodonAccount(account)) || []
+    }
+
+    accountListItems(): List.Item[] {
+        return this.accounts.map((item) => (
+            <List.Item
+                key={item.id}
+                icon={{ source: item.avatar, mask: Image.Mask.RoundedRectangle }}
+                title={item.displayName}
+                subtitle={item.handle}
+                accessories={item.accessories}
+                actions={
+                    <ActionPanel>
+                        <Action.OpenInBrowser title='Visit Profile' url={item.url} />
+                        <Action.CopyToClipboard
+                            title='Copy Profile URL'
+                            content={item.url}
+                            shortcut={{ modifiers: ['cmd', 'shift'], key: 'c' }}
+                        />
+                        <Action.CopyToClipboard
+                            title='Copy Handle'
+                            content={item.handle}
+                            shortcut={{ modifiers: ['cmd', 'shift', 'opt'], key: 'c' }}
+                        />
+                    </ActionPanel>
+                }
+            />
+        ))
     }
 }
 
@@ -52,7 +75,6 @@ class MastodonAccount {
     }
 
     get handle() {
-        console.log(this.acct)
         if (this.acct.includes('@')) {
             return `@${this.acct}`
         } else {
@@ -71,9 +93,15 @@ class MastodonAccount {
     }
 }
 
+function searchTooShortListItem(): List.Item[] {
+    return [
+        <List.Item key='too_short' icon={Icon.Warning} title='Enter at least five characters to search Mastodon.' />,
+    ]
+}
+
 export default function Command() {
     const [searchText, setSearchText] = useState('')
-    const hasSearchText = useMemo(() => searchText.length > 4, [searchText])
+    const validSearchText = useMemo(() => searchText.length > 4, [searchText])
 
     const prefs = getPreferenceValues()
     const { isLoading, data } = useFetch<MastodonSearchAPIResponse>(
@@ -81,38 +109,14 @@ export default function Command() {
         {
             // Make sure the screen isn't flickering when the searchText changes.
             keepPreviousData: true,
-            execute: hasSearchText,
+            execute: validSearchText,
         }
     )
-
     const results = useMemo(() => new MastodonSearch(data), [data])
 
     return (
         <List isLoading={isLoading} searchText={searchText} onSearchTextChange={setSearchText} throttle>
-            {results.accounts.map((item) => (
-                <List.Item
-                    key={item.id}
-                    icon={{ source: item.avatar, mask: Image.Mask.RoundedRectangle }}
-                    title={item.displayName}
-                    subtitle={item.handle}
-                    accessories={item.accessories}
-                    actions={
-                        <ActionPanel>
-                            <Action.OpenInBrowser title='Visit Profile' url={item.url} />
-                            <Action.CopyToClipboard
-                                title='Copy Profile URL'
-                                content={item.url}
-                                shortcut={{ modifiers: ['cmd', 'shift'], key: 'c' }}
-                            />
-                            <Action.CopyToClipboard
-                                title='Copy Handle'
-                                content={item.handle}
-                                shortcut={{ modifiers: ['cmd', 'shift', 'opt'], key: 'c' }}
-                            />
-                        </ActionPanel>
-                    }
-                />
-            ))}
+            {validSearchText ? results.accountListItems() : searchTooShortListItem()}
         </List>
     )
 }
