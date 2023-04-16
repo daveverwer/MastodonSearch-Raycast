@@ -23,7 +23,7 @@ class MastodonSearch {
         this.accounts = response?.accounts.map((account) => new MastodonAccount(account)) || []
     }
 
-    accountListItems(): List.Item[] {
+    accountListItems() {
         return this.accounts.map((item) => (
             <List.Item
                 key={item.id}
@@ -89,7 +89,7 @@ class MastodonAccount {
     }
 }
 
-function searchTooShortListItem(): List.Item[] {
+function searchTooShortListItem() {
     return [
         <List.Item key='too_short' icon={Icon.Warning} title='Enter at least five characters to search Mastodon.' />,
     ]

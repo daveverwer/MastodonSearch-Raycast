@@ -11,10 +11,9 @@
     "license": "MIT",
     "commands": [
         {
-            "name": "index",
-            "title": "Search Mastodon",
-            "subtitle": "Search for posts and people on Mastodon.",
-            "description": "Shows stuff",
+            "name": "search_users",
+            "title": "Search Mastodon Users",
+            "description": "Search Mastodon for matching users and navigate to their profile page.",
             "mode": "view"
         }
     ],
