@@ -18,8 +18,19 @@
             "mode": "view"
         }
     ],
+    "preferences": [
+        {
+            "name": "instance",
+            "title": "Instance",
+            "description": "The Mastodon instance to search.",
+            "type": "textfield",
+            "required": true,
+            "default": "mastodon.social"
+        }
+    ],
     "dependencies": {
-        "@raycast/api": "^1.49.3"
+        "@raycast/api": "^1.49.3",
+        "@raycast/utils": "^1.5.2"
     },
     "devDependencies": {
         "@raycast/eslint-config": "1.0.5",
