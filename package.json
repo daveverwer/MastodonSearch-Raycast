@@ -13,7 +13,7 @@
         {
             "name": "search",
             "title": "Search Mastodon",
-            "subtitle": "",
+            "subtitle": "‍‍",
             "description": "Search Mastodon for people or hashtags.",
             "mode": "view"
         }
