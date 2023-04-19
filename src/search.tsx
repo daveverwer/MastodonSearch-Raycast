@@ -27,6 +27,15 @@ export enum SearchKind {
     Hashtags = 'hashtags',
 }
 
+export function displayNameFor(kind: SearchKind) {
+    switch (kind) {
+        case SearchKind.Accounts:
+            return 'People'
+        case SearchKind.Hashtags:
+            return 'Hashtags'
+    }
+}
+
 export class MastodonSearch {
     readonly accounts: MastodonAccount[]
     readonly hashtags: MastodonHashtag[]

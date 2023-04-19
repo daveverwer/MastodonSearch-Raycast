@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { List, ActionPanel, Action, Image } from '@raycast/api'
-import { MastodonSearch, SearchKind } from './common'
+import { MastodonSearch, SearchKind } from './search'
 
 export default function Command() {
     const [searchText, setSearchText] = useState('')
