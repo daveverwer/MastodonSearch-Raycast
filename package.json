@@ -1,12 +1,13 @@
 {
     "$schema": "https://www.raycast.com/schemas/extension.json",
-    "name": "mastodon",
-    "title": "Search Mastodon",
+    "name": "mastodon-search",
+    "title": "Mastodon Search - Search for people or hashtags on Mastodon.",
     "description": "Mastodon search extension for Raycast.",
     "icon": "command-icon.png",
     "author": "daveverwer",
     "categories": [
-        "Communication"
+        "Communication",
+        "Web"
     ],
     "license": "MIT",
     "commands": [
@@ -45,6 +46,6 @@
         "dev": "ray develop",
         "fix-lint": "ray lint --fix",
         "lint": "ray lint",
-        "publish": "npx @raycast/api@latest publish"
-    }
+        "publish": "ray publish"
+    },
 }

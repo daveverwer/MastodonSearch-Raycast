@@ -1,6 +1,6 @@
 # Search for people or hashtags on Mastodon!
 
-By [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://mstdn.nial.to/@taherb).
+By [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://tobyherbert.co.uk).
 
 ## Features
 
