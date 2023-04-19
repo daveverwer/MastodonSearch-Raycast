@@ -13,13 +13,13 @@ By [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://mstdn.nial.t
 ### People Search
 
 <picture>
-  <source srcset=".readme-images/account-search~dark" media="(prefers-color-scheme: dark)">
-  <img src=".readme-images/account-search~dark" alt="Account search results displayed by the extension">
+  <source srcset="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/account-search~dark.png?raw=true" media="(prefers-color-scheme: dark)">
+  <img src="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/account-search~light.png?raw=true" alt="Account search results displayed by the extension">
 </picture>
 
 ### Hashtags Search
 
 <picture>
-  <source srcset=".readme-images/hashtag-search~dark" media="(prefers-color-scheme: dark)">
-  <img src=".readme-images/hashtag-search~dark" alt="Hashtag search results displayed by the extension">
+  <source srcset="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/hashtag-search~dark.png?raw=true" media="(prefers-color-scheme: dark)">
+  <img src="https://github.com/daveverwer/MastodonSearch-Raycast/blob/main/.readme-images/hashtag-search~light.png?raw=true" alt="Hashtag search results displayed by the extension">
 </picture>
