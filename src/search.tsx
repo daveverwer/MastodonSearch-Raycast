@@ -22,12 +22,12 @@ export default function Command() {
             throttle>
             <List.Section title='People'>
                 {searchResult.accounts.map((account) => (
-                    <AccountListItem account={account} />
+                    <AccountListItem account={account} key={account.id} />
                 ))}
             </List.Section>
             <List.Section title='Hashtags'>
                 {searchResult.hashtags.map((hashtag) => (
-                    <HashtagListItem hashtag={hashtag} />
+                    <HashtagListItem hashtag={hashtag} key={hashtag.name} />
                 ))}
             </List.Section>
         </List>

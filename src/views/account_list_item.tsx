@@ -4,7 +4,6 @@ import { MastodonAccount } from '../models/mastodon_account'
 export function AccountListItem(props: { account: MastodonAccount }) {
     return (
         <List.Item
-            key={props.account.id}
             icon={{ source: props.account.avatar, mask: Image.Mask.RoundedRectangle }}
             title={props.account.displayName}
             subtitle={props.account.handle}

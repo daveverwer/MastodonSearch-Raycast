@@ -4,7 +4,6 @@ import { MastodonHashtag } from '../models/mastodon_hashtag'
 export function HashtagListItem(props: { hashtag: MastodonHashtag }) {
     return (
         <List.Item
-            key={props.hashtag.name}
             icon={Icon.Hashtag}
             title={props.hashtag.name}
             actions={
