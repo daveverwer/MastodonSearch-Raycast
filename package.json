@@ -27,14 +27,6 @@
             "type": "textfield",
             "required": true,
             "default": "mastodon.social"
-        },
-        {
-            "name": "searchSelectedText",
-            "label": "Pre-fill search with selected text?",
-            "description": "If text is selected in the frontmost app, should it be pre-filled in the search box?",
-            "type": "checkbox",
-            "required": true,
-            "default": false
         }
     ],
     "dependencies": {
