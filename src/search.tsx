@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { List, ActionPanel, Action, Image, Icon } from '@raycast/api'
+import { List, getSelectedText } from '@raycast/api'
 import { MastodonSearch } from './models/mastodon_search'
 import { SearchKind } from './models/search_kind'
 import { AccountListItem } from './views/account_list_item'
@@ -11,6 +11,8 @@ export default function Command() {
     const [searchKind, setSearchKind] = useState(SearchKind.Accounts)
 
     const { isLoading, searchResult } = MastodonSearch.search(searchText, searchKind)
+
+    setSearchTextFromSelectedText(setSearchText)
 
     return (
         <List
@@ -32,4 +34,16 @@ export default function Command() {
             </List.Section>
         </List>
     )
+}
+
+function setSearchTextFromSelectedText(setSearchText: (text: string) => void) {
+    getSelectedText()
+        .then((text) => {
+            if (typeof text === 'string' && text.length > 0) {
+                setSearchText(text)
+            }
+        })
+        .catch(() => {
+            // Swallow this error, it's too noisy as it fires every time no text is selected.
+        })
 }
