@@ -1,6 +1,10 @@
-# Search for people or hashtags on Mastodon!
+# Mastodon Search - Search for people or hashtags on Mastodon!
 
-By [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://tobyherbert.co.uk).
+This extension is not intended to be a full Mastodon client. Instead, it is a quick and easy way to get glanceable information about people and to navigate to pages on the Mastodon website. It intentionally does not include posting, browsing timelines, mentions, or even post search.
+
+## Authors
+
+Written by [Dave Verwer](https://daveverwer.com) and [Toby Herbert](https://tobyherbert.co.uk).
 
 ## Features
 
