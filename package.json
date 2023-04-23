@@ -1,7 +1,7 @@
 {
     "$schema": "https://www.raycast.com/schemas/extension.json",
     "name": "mastodon-search",
-    "title": "Mastodon Search - Search for people or hashtags on Mastodon.",
+    "title": "Mastodon Search - Search for People or Hashtags on Mastodon.",
     "description": "Mastodon search extension for Raycast.",
     "icon": "command-icon.png",
     "author": "daveverwer",
