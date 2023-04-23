@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { List, getSelectedText } from '@raycast/api'
 import { MastodonSearch } from './models/mastodon_search'
 import { SearchKind } from './models/search_kind'
@@ -12,7 +12,9 @@ export default function Command() {
 
     const { isLoading, searchResult } = MastodonSearch.search(searchText, searchKind)
 
-    setSearchTextFromSelectedText(setSearchText)
+    useEffect(() => {
+        setSearchTextFromSelectedText(setSearchText)
+    }, [])
 
     return (
         <List
